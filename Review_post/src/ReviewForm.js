@@ -72,8 +72,8 @@ function ReviewForm() {
                 </div>
 
                 {/* 年齢 */}
-                <div>
-                    <label>年齢：</label>
+                <div className="field-group">
+                    <div className="field-label">年齢：</div>
                     <select value={age} onChange={(e) => setAge(Number(e.target.value))}>
                         {[...Array(63)].map((_, i) => {
                             const ageVal = i + 18;
