@@ -15,7 +15,7 @@ function ReviewForm() {
     const [age, setAge] = useState(18);
     const [category, setCategory] = useState("家電");
     const [product, setProduct] = useState(productOptions["家電"][0]);
-    const [reviewText, setReviewText] = useState("");
+    const [review, setReview] = useState("");
     const [date, setDate] = useState("");
     const [message, setMessage] = useState("");
 
@@ -27,7 +27,7 @@ function ReviewForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (reviewText.length > 140) {
+        if (review.length > 140) {
             setMessage("レビューは140文字以内で入力してください。");
             return;
         }
@@ -38,11 +38,11 @@ function ReviewForm() {
                 age,
                 category,
                 product,
-                reviewText,
+                review,
                 date
             });
             setMessage("レビューを送信しました！");
-            setReviewText("");
+            setReview("");
             setDate("");
         } catch (error) {
             setMessage("送信に失敗しました。");
@@ -125,8 +125,8 @@ function ReviewForm() {
                 <div className="field-group">
                     <div className="field-label">レビュー（140字以内）：</div>
                     <textarea
-                        value={reviewText}
-                        onChange={(e) => setReviewText(e.target.value)}
+                        value={review}
+                        onChange={(e) => setReview(e.target.value)}
                         maxLength={140}
                         required
                     />
