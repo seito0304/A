@@ -72,24 +72,20 @@ function ReviewForm() {
                 </div>
 
                 {/* 年齢 */}
-                <div className="field-group">
-                    <div className="field-label">年齢：</div>
-                    <div className="toggle-group">
+                <div>
+                    <label>年齢：</label>
+                    <select value={age} onChange={(e) => setAge(Number(e.target.value))}>
                         {[...Array(63)].map((_, i) => {
                             const ageVal = i + 18;
                             return (
-                                <button
-                                    type="button"
-                                    key={ageVal}
-                                    className={`toggle-button ${age === ageVal ? "selected" : ""}`}
-                                    onClick={() => setAge(ageVal)}
-                                >
-                                    {ageVal}
-                                </button>
+                                <option key={ageVal} value={ageVal}>
+                                    {ageVal}歳
+                                </option>
                             );
                         })}
-                    </div>
+                    </select>
                 </div>
+
 
                 {/* カテゴリ */}
                 <div className="field-group">
