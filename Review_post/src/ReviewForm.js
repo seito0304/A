@@ -1,4 +1,4 @@
-import './index.css';
+import './ReviewForm.css';
 import { useState } from "react";
 import axios from "axios";
 
@@ -53,80 +53,81 @@ function ReviewForm() {
     <div className="review-form">
       <h2>レビュー投稿</h2>
       <form onSubmit={handleSubmit}>
+
         {/* 性別 */}
-        <div>
-          <label>性別：</label>
-          {["女性", "男性"].map((g) => (
-            <label key={g}>
-              <input
-                type="radio"
-                name="gender"
-                value={g}
-                checked={gender === g}
-                onChange={() => setGender(g)}
-              />
-              {g}
-            </label>
-          ))}
+        <div className="field-group">
+          <div className="field-label">性別：</div>
+          <div className="toggle-group">
+            {["女性", "男性"].map((g) => (
+              <button
+                type="button"
+                key={g}
+                className={`toggle-button ${gender === g ? "selected" : ""}`}
+                onClick={() => setGender(g)}
+              >
+                {g}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* 年齢 */}
-        <div>
-          <label>年齢：</label>
-          {[...Array(63)].map((_, i) => {
-            const ageVal = i + 18;
-            return (
-              <label key={ageVal}>
-                <input
-                  type="radio"
-                  name="age"
-                  value={ageVal}
-                  checked={age === ageVal}
-                  onChange={() => setAge(ageVal)}
-                />
-                {ageVal}歳
-              </label>
-            );
-          })}
+        <div className="field-group">
+          <div className="field-label">年齢：</div>
+          <div className="toggle-group">
+            {[...Array(63)].map((_, i) => {
+              const ageVal = i + 18;
+              return (
+                <button
+                  type="button"
+                  key={ageVal}
+                  className={`toggle-button ${age === ageVal ? "selected" : ""}`}
+                  onClick={() => setAge(ageVal)}
+                >
+                  {ageVal}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* カテゴリ */}
-        <div>
-          <label>カテゴリ：</label>
-          {Object.keys(productOptions).map((cat) => (
-            <label key={cat}>
-              <input
-                type="radio"
-                name="category"
-                value={cat}
-                checked={category === cat}
-                onChange={() => handleCategoryChange(cat)}
-              />
-              {cat}
-            </label>
-          ))}
+        <div className="field-group">
+          <div className="field-label">カテゴリ：</div>
+          <div className="toggle-group">
+            {Object.keys(productOptions).map((cat) => (
+              <button
+                type="button"
+                key={cat}
+                className={`toggle-button ${category === cat ? "selected" : ""}`}
+                onClick={() => handleCategoryChange(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* 製品 */}
-        <div>
-          <label>製品：</label>
-          {productOptions[category].map((prod) => (
-            <label key={prod}>
-              <input
-                type="radio"
-                name="product"
-                value={prod}
-                checked={product === prod}
-                onChange={() => setProduct(prod)}
-              />
-              {prod}
-            </label>
-          ))}
+        <div className="field-group">
+          <div className="field-label">製品：</div>
+          <div className="toggle-group">
+            {productOptions[category].map((prod) => (
+              <button
+                type="button"
+                key={prod}
+                className={`toggle-button ${product === prod ? "selected" : ""}`}
+                onClick={() => setProduct(prod)}
+              >
+                {prod}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* レビュー */}
-        <div>
-          <label>レビュー（140字以内）：</label>
+        <div className="field-group">
+          <div className="field-label">レビュー（140字以内）：</div>
           <textarea
             value={reviewText}
             onChange={(e) => setReviewText(e.target.value)}
@@ -136,8 +137,8 @@ function ReviewForm() {
         </div>
 
         {/* 日付 */}
-        <div>
-          <label>日付：</label>
+        <div className="field-group">
+          <div className="field-label">日付：</div>
           <input
             type="date"
             value={date}
